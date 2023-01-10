@@ -42,12 +42,10 @@ const Register = () => {
       const cloud_name = process.env.REACT_APP_CLOUD_NAME || "";
       const cloud_folder = process.env.REACT_APP_CLOUD_FOLDER || "chat-room";
 
-      console.log(cloud_name)
-
       data.append("file", pics);
       data.append("upload_preset", cloud_folder);
       data.append("cloud_name", cloud_name);
-      fetch(`https://api.cloudinary.com/v1_1/daykefnh3/image/upload`, {
+      fetch(`https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`, {
         method: "post",
         body: data,
       })

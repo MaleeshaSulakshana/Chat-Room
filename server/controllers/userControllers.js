@@ -3,9 +3,9 @@ const generateToken = require("../token.js");
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
 
-// @desc		Register new user
-// @route		/api/users
-// @access		Public
+// Register new user
+// Post /api/users
+// Public access
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password, pic } = req.body;
   //   ? check for missing fields
@@ -44,9 +44,9 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc		Login existing user
-// @route		/api/users/login
-// @access		Public
+// Login existing user
+// Post /api/users/login
+// Public access
 const loginUser = asyncHandler(async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -68,18 +68,18 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc			Get a certain user
-// @route			GET /api/users?search=
-// @access		Private
+// Get a certain user
+// GET /api/users?search=<value>
+// Private access
 const allUsers = asyncHandler(async (req, res) => {
   try {
     const keyword = req.query.search
       ? {
-          $or: [
-            { name: { $regex: req.query.search, $options: "i" } },
-            { email: { $regex: req.query.search, $options: "i" } },
-          ],
-        }
+        $or: [
+          { name: { $regex: req.query.search, $options: "i" } },
+          { email: { $regex: req.query.search, $options: "i" } },
+        ],
+      }
       : {};
     const allUserData = await User.find(keyword).find({
       _id: { $ne: req.user._id },

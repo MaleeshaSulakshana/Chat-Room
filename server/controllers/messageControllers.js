@@ -3,9 +3,9 @@ const User = require("../models/user");
 const asyncHandler = require("express-async-handler");
 const Chat = require("../models/chat");
 
-// @desc		Send message
-// @route		POST /messages
-// @access		Private
+// Send message
+// POST /messages
+// Private access
 const sendMessage = asyncHandler(async (req, res) => {
   const { content, chatId } = req.body;
   // check for error
@@ -40,9 +40,9 @@ const sendMessage = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc		Fetch all the messages
-// @route		GET /message:chatId
-// @access		Private
+// Fetch all the messages
+// GET /message:chatId
+// Private access
 const fetchMessage = asyncHandler(async (req, res) => {
   const { chatId } = req.params;
   try {

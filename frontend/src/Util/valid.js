@@ -7,7 +7,7 @@ export const valid = (name, email, password, cf_password) => {
   if (!validateEmail(email)) return "Invalid email";
   // 3. verify if the password length is greater than 8 character
   if (password.length < 8) return "Password must have at least 8 character";
-  // 4. verify if password is equal to cf_password
+  // 4. verify if password is equal to confirm password
   if (password !== cf_password) return "Password do not match";
 };
 
